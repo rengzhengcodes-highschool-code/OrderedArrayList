@@ -146,4 +146,12 @@ public class NoNullArrayListTester {
 		return fail;
 	}
 
+	public static boolean setTester(int tests) {
+		TesterMethods.tester("setTester");
+		boolean fail = false;
+
+		TesterMethods.methodMessage("setTester", fail);
+		return fail;
+	}
+
 }
