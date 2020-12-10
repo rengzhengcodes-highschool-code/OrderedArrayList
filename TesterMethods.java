@@ -29,6 +29,14 @@ public class TesterMethods {
 		System.out.println("Test case " + testCase + " passed.");
 	}
 
+	public static void errorMessage(int testCase) {
+		System.out.println("Test case " + testCase + " failed.");
+	}
+
+	public static void errorMessage(String testCase) {
+		System.out.println("Test case " + testCase + " failed.");
+	}
+
 	public static void methodMessage(String method, boolean fail) {
 		if (fail) {
 			System.out.println("\nAt least one test case failed for " + method);
