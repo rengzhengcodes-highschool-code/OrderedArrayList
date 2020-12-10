@@ -2,6 +2,14 @@ import java.util.ArrayList;
 
 public class NoNullArrayList<T> extends ArrayList<T> {
 
+	public NoNullArrayList() {
+		super();
+	}
+
+	public NoNullArrayList(int startSize) {
+		super(startSize);
+	}
+
 	public boolean add(T value) {
 		isNull(value);
 		return super.add(value);
