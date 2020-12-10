@@ -7,6 +7,11 @@ public class NoNullArrayList<T> extends ArrayList<T> {
 		return super.add(value);
 	}
 
+	public void add(int index, T value) {
+		isNull(value);
+		super.add(index, value);
+	}
+
 	public T set(int index, T value) {
 		isNull(value);
 		return super.set(index, value);
