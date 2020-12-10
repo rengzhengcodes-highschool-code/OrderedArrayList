@@ -7,6 +7,11 @@ public class NoNullArrayList<T> extends ArrayList<T> {
 		return super.add(value);
 	}
 
+	public T set(int index, T value) {
+		isNull(value);
+		return super.set(index, value);
+	}
+
 	private static void isNull(Object value) {
 		if (value == null) {
 			throw new IllegalArgumentException("Null values are not valid input.");
