@@ -3,3 +3,4 @@
 - No nulls is a inherited class because these methods can be applied to other classes that have similar functionality.
 - Type T dynamically types objects that are inputted, allowing the program to function correctly with the right calls.
 - Can create private method to throw the error if isNull, as that is repetitive code.
+- Using super.ArrayListMethod(params) can save on coding our own solutions.
