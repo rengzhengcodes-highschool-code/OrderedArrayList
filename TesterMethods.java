@@ -37,6 +37,12 @@ public class TesterMethods {
 		System.out.println("Test case " + testCase + " failed.");
 	}
 
+	public static void errorMessage(String testCase, String expected, String actual) {
+		errorMessage(testCase);
+		System.out.println("Expected: " + expected);
+		System.out.println("Actual:" + actual);
+	}
+
 	public static void methodMessage(String method, boolean fail) {
 		if (fail) {
 			System.out.println("\nAt least one test case failed for " + method);
