@@ -1,5 +1,13 @@
 public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T> {
 
+	public OrderedArrayList() {
+		super();
+	}
+
+	public OrderedArrayList(int startSize) {
+		super(startSize);
+	}
+
 	public boolean add(T value) {
 		int currentSize = this.size();
 		for (int index = 0; index < currentSize; index++) {
