@@ -9,6 +9,7 @@ public class NoNullArrayListTester {
 		failure = constructorTester() || failure;
 		failure = addTester(1000) || failure;
 		failure = addAtIndexTester(1000) || failure;
+		failure = setTester(1000) || failure;
 
 		TesterMethods.overall(failure);
 	}
@@ -149,6 +150,49 @@ public class NoNullArrayListTester {
 	public static boolean setTester(int tests) {
 		TesterMethods.tester("setTester");
 		boolean fail = false;
+
+		NoNullArrayList<Integer> noNulls = new NoNullArrayList<Integer>(tests);
+		ArrayList<Integer> all = new ArrayList<Integer>(tests);
+
+		for (int val = 0; val < tests; val++) {
+			int n = TesterMethods.randInt(-val, val);
+			noNulls.add(n);
+			all.add(n);
+		}
+
+		ArrayList<Integer> original = new ArrayList<>(all);
+
+		for (int test = 0; test < tests; test++) {
+			if (TesterMethods.randInt(10) == 0) {
+				try {
+					all.set(test, null);
+					noNulls.set(test, null);
+					TesterMethods.errorMessage("Should not be able to set null");
+				} catch (IllegalArgumentException e) {
+					//TesterMethods.passMessage(test);
+				}
+			} else {
+				int randval = TesterMethods.randInt(-1000000, 1000000);
+				all.set(test, randval);
+				noNulls.set(test, randval);
+				//TesterMethods.passMessage(test);
+			}
+		}
+
+		for (int test = 0; test < tests; test++) {
+			Integer noNullsVal = noNulls.get(test);
+			Integer expectedVal = all.get(test);
+			if (expectedVal == null) {
+				expectedVal = original.get(test);
+			}
+
+			if (noNullsVal.equals(expectedVal)) {
+				//TesterMethods.passMessage(test);
+			} else {
+				fail = true;
+				TesterMethods.errorMessage(test, Integer.toString(expectedVal), Integer.toString(noNullsVal));
+			}
+		}
 
 		TesterMethods.methodMessage("setTester", fail);
 		return fail;
