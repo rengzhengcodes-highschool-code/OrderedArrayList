@@ -173,8 +173,13 @@ public class NoNullArrayListTester {
 				}
 			} else {
 				int randval = TesterMethods.randInt(-1000000, 1000000);
-				all.set(test, randval);
-				noNulls.set(test, randval);
+				int expectedReturn = all.set(test, randval);
+				int returned = noNulls.set(test, randval);
+				if (expectedReturn == returned) {
+					//TesterMethods.passMessage(test);
+				} else {
+					TesterMethods.errorMessage(test, Integer.toString(expectedReturn), Integer.toString(returned));
+				}
 				//TesterMethods.passMessage(test);
 			}
 		}
