@@ -28,6 +28,7 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 	}
 
 	public T set(int index, T value) {
+		NoNullArrayList.isNull(value);
 		T popped = this.remove(index);
 		this.add(value);
 		return popped;
