@@ -44,10 +44,10 @@ public class NoNullArrayListTester {
 	public static boolean addTester(int tests) {
 		TesterMethods.tester("addTester");
 		boolean fail = false;
-		NoNullArrayList<Integer> noNulls = new NoNullArrayList<Integer>(tests);
+		NoNullArrayList<Integer> noNulls = new NoNullArrayList<Integer>();
 
 		int nulls = 0;
-		ArrayList<Integer> all = new ArrayList<Integer>(tests);
+		ArrayList<Integer> all = new ArrayList<Integer>();
 
 		for (int test = 0; test < tests; test++) {
 			if (TesterMethods.randInt(10) == 0) {
@@ -97,10 +97,10 @@ public class NoNullArrayListTester {
 	public static boolean addAtIndexTester(int tests) {
 		TesterMethods.tester("addAtIndexTester");
 		boolean fail = false;
-		NoNullArrayList<Integer> noNulls = new NoNullArrayList<Integer>(tests);
+		NoNullArrayList<Integer> noNulls = new NoNullArrayList<Integer>();
 
 		int nulls = 0;
-		ArrayList<Integer> all = new ArrayList<Integer>(tests);
+		ArrayList<Integer> all = new ArrayList<Integer>();
 
 		for (int test = 0; test < tests; test++) {
 			if (TesterMethods.randInt(10) == 0) {
@@ -151,8 +151,8 @@ public class NoNullArrayListTester {
 		TesterMethods.tester("setTester");
 		boolean fail = false;
 
-		NoNullArrayList<Integer> noNulls = new NoNullArrayList<Integer>(tests);
-		ArrayList<Integer> all = new ArrayList<Integer>(tests);
+		NoNullArrayList<Integer> noNulls = new NoNullArrayList<Integer>();
+		ArrayList<Integer> all = new ArrayList<Integer>();
 
 		for (int val = 0; val < tests; val++) {
 			int n = TesterMethods.randInt(-val, val);
