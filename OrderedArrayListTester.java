@@ -70,9 +70,9 @@ public class OrderedArrayListTester {
 		try {
 			for (int i = 0; i < 100; i++) {
 				test.add(TesterMethods.randInt(10), null);
+				fail = true;
+				TesterMethods.errorMessage(i, "to not be here", "add(index, value) added a null");
 			}
-			fail = true;
-			TesterMethods.errorMessage("add(index, value) added a null");
 		} catch (IllegalArgumentException e) {
 			//TesterMethods.passMessage("add(index, value) didn't add a null");
 		}
@@ -80,9 +80,9 @@ public class OrderedArrayListTester {
 		try {
 			for (int i = 0; i < 100; i++) {
 				test.set(TesterMethods.randInt(10), null);
+				fail = true;
+				TesterMethods.errorMessage(i, "to not be here", "set(index, value) added a null");
 			}
-			fail = true;
-			TesterMethods.errorMessage("set(index, value) added a null");
 		} catch (IllegalArgumentException e) {
 			//TesterMethods.passMessage("set(index, value) didn't add a null");
 		}
@@ -99,18 +99,27 @@ public class OrderedArrayListTester {
 
 
 		for (int test = 0; test < tests; test++) {
-			int value = TesterMethods.randInt((int)-1e6, (int)1e6);
-
-			expected.add(value);
-			subject.add(value);
-
+			Integer value = TesterMethods.randInt((int)-1e6, (int)1e6);
+			if (TesterMethods.randInt(10) == 0) {
+				value = null;
+				try {
+					subject.add(value);
+					fail = true;
+					TesterMethods.errorMessage(test, "not to be here", "added null");
+				} catch (IllegalArgumentException e) {
+					//TesterMethods.passMessage(test);
+				}
+			} else {
+				expected.add(value);
+				subject.add(value);
+			}
 			//System.out.println(subject.toString());
 		}
 
 		Collections.sort(expected);
 
 		if (expected.equals(subject)) {
-			TesterMethods.passMessage("sorting algo");
+			//TesterMethods.passMessage("sorting algo");
 		} else {
 			fail = true;
 			TesterMethods.errorMessage("sorting algo", expected.toString(), subject.toString());
