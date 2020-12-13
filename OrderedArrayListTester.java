@@ -103,10 +103,11 @@ public class OrderedArrayListTester {
 
 			expected.add(value);
 			subject.add(value);
+
+			//System.out.println(subject.toString());
 		}
 
 		Collections.sort(expected);
-		System.out.println(expected.toString());
 
 		if (expected.equals(subject)) {
 			TesterMethods.passMessage("sorting algo");
