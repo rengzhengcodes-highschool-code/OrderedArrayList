@@ -9,6 +9,8 @@ public class OrderedArrayListTester {
 		failure = constructorTester() || failure;
 		failure = nullTester() || failure;
 		failure = addTester(1000) || failure;
+		failure = addAtIndexTester(1000) || failure;
+		failure = setTester(1000) || failure;
 
 		TesterMethods.overall(failure);
 	}
@@ -103,7 +105,7 @@ public class OrderedArrayListTester {
 			if (TesterMethods.randInt(10) == 0) {
 				value = null;
 				try {
-					subject.add(value);
+					fail = subject.add(value);
 					fail = true;
 					TesterMethods.errorMessage(test, "not to be here", "added null");
 				} catch (IllegalArgumentException e) {
@@ -111,7 +113,13 @@ public class OrderedArrayListTester {
 				}
 			} else {
 				expected.add(value);
-				subject.add(value);
+				boolean output = subject.add(value);
+				if (output) {
+					//TesterMethods.passMessage(test);
+				} else {
+					fail = true;
+					TesterMethods.errorMessage(test, "true", Boolean.toString(output));
+				}
 			}
 			//System.out.println(subject.toString());
 		}
@@ -126,6 +134,102 @@ public class OrderedArrayListTester {
 		}
 
 		TesterMethods.methodMessage("addTester", fail);
+		return fail;
+	}
+
+	public static boolean addAtIndexTester(int tests) {
+		TesterMethods.tester("addAtIndexTester");
+		boolean fail = false;
+		ArrayList<Integer> expected = new ArrayList<Integer>();
+		OrderedArrayList<Integer> subject = new OrderedArrayList<Integer>();
+
+
+		for (int test = 0; test < tests; test++) {
+			Integer value = TesterMethods.randInt((int)-1e6, (int)1e6);
+			int index = TesterMethods.randInt(subject.size());
+			if (TesterMethods.randInt(10) == 0) {
+				value = null;
+				try {
+					subject.add(index, value);
+					fail = true;
+					TesterMethods.errorMessage(test, "not to be here", "added null");
+				} catch (IllegalArgumentException e) {
+					//TesterMethods.passMessage(test);
+				}
+			} else {
+				expected.add(index, value);
+				subject.add(index, value);
+			}
+			//System.out.println(subject.toString());
+		}
+
+		Collections.sort(expected);
+
+		if (expected.equals(subject)) {
+			//TesterMethods.passMessage("sorting algo");
+		} else {
+			fail = true;
+			TesterMethods.errorMessage("sorting algo", expected.toString(), subject.toString());
+		}
+
+		TesterMethods.methodMessage("addAtIndexTester", fail);
+		return fail;
+	}
+
+	public static boolean setTester(int tests) {
+		TesterMethods.tester("setTester");
+		boolean fail = false;
+		ArrayList<Integer> expected = new ArrayList<Integer>();
+		OrderedArrayList<Integer> subject = new OrderedArrayList<Integer>();
+
+		for (int test = 0; test < tests; test++) {
+			Integer value = TesterMethods.randInt((int)-1e6, (int)1e6);
+			expected.add(value);
+			subject.add(value);
+		}
+
+		Collections.sort(expected);
+
+		if (!expected.equals(subject)) {
+			throw new IllegalStateException("Expected and subject unequal before mutations.");
+		}
+
+		for (int test = 0; test < tests; test++) {
+			Integer value = TesterMethods.randInt((int)-1e6, (int)1e6);
+			int index = TesterMethods.randInt(subject.size());
+			if (TesterMethods.randInt(10) == 0) {
+				value = null;
+				try {
+					subject.set(index, value);
+					fail = true;
+					TesterMethods.errorMessage(test, "not to be here", "set null");
+				} catch (IllegalArgumentException e) {
+					//TesterMethods.passMessage(test);
+				}
+			} else {
+				Collections.sort(expected);
+				int expectedReturn = expected.set(index, value);
+				int returned = subject.set(index, value);
+				if (returned == expectedReturn) {
+					//TesterMethods.passMessage(test);
+				} else {
+					fail = true;
+					TesterMethods.errorMessage(test, Integer.toString(expectedReturn), Integer.toString(returned));
+				}
+			}
+			//System.out.println(subject.toString());
+		}
+
+		Collections.sort(expected);
+
+		if (expected.equals(subject)) {
+			//TesterMethods.passMessage("sorting algo");
+		} else {
+			fail = true;
+			TesterMethods.errorMessage("sorting algo", expected.toString(), subject.toString());
+		}
+
+		TesterMethods.methodMessage("setTester", fail);
 		return fail;
 	}
 
