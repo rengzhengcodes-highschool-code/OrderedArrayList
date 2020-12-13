@@ -10,7 +10,7 @@ public class OrderedArrayListTester {
 		failure = nullTester() || failure;
 		failure = addTester(1000) || failure;
 		failure = addAtIndexTester(1000) || failure;
-		failure = setTester(1000) || failure;
+		failure = failure || setTester(1000);
 
 		TesterMethods.overall(failure);
 	}
