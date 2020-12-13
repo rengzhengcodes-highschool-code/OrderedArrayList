@@ -13,8 +13,8 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 		int currentSize = this.size();
 		for (int index = 0; index < currentSize; index++) {
 
-			if (value.compareTo(this.get(index)) > 0) {
-				super.add(Math.max(0, index-1), value);//makes sure it doesn't add to neg indexes if this.get(0) > value.
+			if (value.compareTo(this.get(index)) <= 0) {
+				super.add(index, value);//makes sure it doesn't add to neg indexes if this.get(0) > value.
 				return true;
 			}
 
