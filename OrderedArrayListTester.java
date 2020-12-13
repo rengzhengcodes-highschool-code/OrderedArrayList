@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class OrderedArrayListTester {
 
 	public static void main(String[] args) {
@@ -91,10 +94,29 @@ public class OrderedArrayListTester {
 	public static boolean addTester(int tests) {
 		TesterMethods.tester("addTester");
 		boolean fail = false;
+		ArrayList<Integer> expected = new ArrayList<Integer>();
+		OrderedArrayList<Integer> subject = new OrderedArrayList<Integer>();
+
+
+		for (int test = 0; test < tests; test++) {
+			int value = TesterMethods.randInt((int)-1e6, (int)1e6);
+
+			expected.add(value);
+			subject.add(value);
+		}
+
+		Collections.sort(expected);
+		System.out.println(expected.toString());
+
+		if (expected.equals(subject)) {
+			TesterMethods.passMessage("sorting algo");
+		} else {
+			fail = true;
+			TesterMethods.errorMessage("sorting algo", expected.toString(), subject.toString());
+		}
 
 		TesterMethods.methodMessage("addTester", fail);
 		return fail;
 	}
-
 
 }
