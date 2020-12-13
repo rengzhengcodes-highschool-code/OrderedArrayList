@@ -25,7 +25,7 @@ public class NoNullArrayList<T> extends ArrayList<T> {
 		return super.set(index, value);
 	}
 
-	private static void isNull(Object value) {
+	public static void isNull(Object value) {
 		if (value == null) {
 			throw new IllegalArgumentException("Null values are not valid input.");
 		}
