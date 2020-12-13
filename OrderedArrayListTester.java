@@ -5,6 +5,7 @@ public class OrderedArrayListTester {
 
 		failure = constructorTester() || failure;
 		failure = nullTester() || failure;
+		failure = addTester(1000) || failure;
 
 		TesterMethods.overall(failure);
 	}
@@ -86,4 +87,14 @@ public class OrderedArrayListTester {
 		TesterMethods.methodMessage("nullTester", fail);
 		return fail;
 	}
+
+	public static boolean addTester(int tests) {
+		TesterMethods.tester("addTester");
+		boolean fail = false;
+
+		TesterMethods.methodMessage("addTester", fail);
+		return fail;
+	}
+
+
 }
